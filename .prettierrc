@@ -10,13 +10,5 @@
   "tabWidth": 2,
   "useTabs": false,
   "trailingComma": "es5",
-  "parser": "typescript",
-  "overrides": [
-    {
-      "files": "*.css",
-      "options": {
-        "parser": "css"
-      }
-    }
-  ]
+  "parser": "typescript"
 }
