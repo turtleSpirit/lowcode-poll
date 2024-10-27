@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-const MainLayout: FC = () => {
+const QuestionLayout: FC = () => {
   return (
     <>
-      <div className="main-layout">MainLayout header</div>
+      <div>QuestionLayout header</div>
       <div>
         <Outlet />
       </div>
-      <div>MainLayout footer</div>
+      <div>QuestionLayout footer</div>
     </>
   );
 };
 
-export default MainLayout;
+export default QuestionLayout;
