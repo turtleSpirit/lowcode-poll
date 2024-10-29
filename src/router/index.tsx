@@ -49,24 +49,6 @@ const routes = [
             path: 'trash',
             element: <Trash />,
           },
-          // {
-          //   path: 'question',
-          //   element: <QuestionLayout />,
-          //   children: [
-          //     {
-          //       path: 'list',
-          //       element: <QuestionList />,
-          //     },
-          //     {
-          //       path: ':id',
-          //       element: <QuestionDetail />,
-          //     },
-          //     {
-          //       path:'manage',
-          //       element: <ManageQuestion />,
-          //     },
-          //   ],
-          // },
         ],
       },
       {
