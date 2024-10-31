@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import styles from '@/assets/styles/ManageLayout.scss';
+import styles from '@/assets/styles/ManageLayout.module.scss';
 const ManageLayout: FC = () => {
   return (
     <div className={styles.container}>
