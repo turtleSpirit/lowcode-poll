@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import * as RouterConfig from './config';
 
 import MainLayout from '../layouts/MainLayout';
 import Home from '../pages/Home';
@@ -17,23 +18,23 @@ import Stat from '../pages/question/Stat';
 
 const routes = [
   {
-    path: '/',
+    path: RouterConfig.HOME_PATHNAME,
     element: <MainLayout />,
     children: [
       {
-        path: '/',
+        path: RouterConfig.HOME_PATHNAME,
         element: <Home />,
       },
       {
-        path: 'login',
+        path: RouterConfig.LOGIN_PATHNAME,
         element: <Login />,
       },
       {
-        path: 'register',
+        path: RouterConfig.REGISTER_PATHNAME,
         element: <Register />,
       },
       {
-        path: 'manage',
+        path: RouterConfig.MANAGE_PATHNAME,
         element: <ManageLayout />,
         children: [
           {
@@ -51,13 +52,13 @@ const routes = [
         ],
       },
       {
-        path: '*',
+        path: RouterConfig.NOT_FOUND_PATHNAME,
         element: <NotFound />,
       },
     ],
   },
   {
-    path: '/question',
+    path: RouterConfig.QUESTION_PATHNAME,
     element: <QuestionLayout />,
     children: [
       {
@@ -71,7 +72,7 @@ const routes = [
     ],
   },
   {
-    path: '*',
+    path: RouterConfig.NOT_FOUND_PATHNAME,
     element: <NotFound />,
   },
 ];
