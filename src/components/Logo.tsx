@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Space, Typography } from 'antd';
 import { FormOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import styles from '@/assets/styles/Logo.module.scss';
+import styles from '@/assets/styles/components/Logo.module.scss';
 
 const { Title } = Typography;
 
