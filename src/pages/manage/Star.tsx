@@ -15,14 +15,6 @@ const rawQuestionList = [
     answerCount: 10,
     createdAt: '3月10日 13:23',
   },
-  {
-    _id: '2',
-    title: '测试问卷2',
-    isStar: true,
-    isPublished: false,
-    answerCount: 10,
-    createdAt: '3月10日 13:23',
-  },
 ];
 
 const Star: FC = () => {
