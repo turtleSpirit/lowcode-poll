@@ -78,7 +78,7 @@
       "eslint src --fix",
       "prettier --write"
     ],
-    "*.{scss,less,html}": [
+    "*.{scss,less}": [
       "stylelint --fix"
     ]
   },
