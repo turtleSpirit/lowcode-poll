@@ -1,8 +1,9 @@
 import { QuestionComponentsType } from '@/constant/question';
+import { nanoid } from 'nanoid';
 
 export const questionDetail = [
   {
-    id: 1,
+    id: nanoid(6),
     type: QuestionComponentsType.QuestionTitle,
     name: '标题',
     nickName: '标题',
@@ -13,7 +14,7 @@ export const questionDetail = [
     },
   },
   {
-    id: 2,
+    id: nanoid(6),
     type: QuestionComponentsType.QuestionInput,
     name: '输入框',
     nickName: '输入框',
@@ -23,7 +24,7 @@ export const questionDetail = [
     },
   },
   {
-    id: 3,
+    id: nanoid(6),
     type: QuestionComponentsType.QuestionInput,
     name: '输入框',
     nickName: '输入框',
