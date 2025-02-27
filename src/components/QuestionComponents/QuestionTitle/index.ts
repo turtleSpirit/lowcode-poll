@@ -9,7 +9,7 @@ import { QuestionComponentsType } from '@/constant/question';
 export * from './interface';
 
 export default {
-  title: '标题',
+  name: '标题',
   type: QuestionComponentsType.QuestionTitle,
   Component,
   defaultProps: QuestionTitleDefaultProps,

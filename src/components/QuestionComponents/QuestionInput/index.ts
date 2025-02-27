@@ -10,7 +10,7 @@ import { QuestionComponentsType } from '@/constant/question';
 export * from './interface';
 
 export default {
-  title: '标题',
+  name: '输入框',
   type: QuestionComponentsType.QuestionInput,
   Component,
   defaultProps: QuestionInputDefaultProps,

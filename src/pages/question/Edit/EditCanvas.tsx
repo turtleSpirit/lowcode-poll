@@ -1,23 +1,21 @@
 import React, { FC } from 'react';
+import useGetComponentInfo from '@/hooks/useGetComponentInfo';
+// import { getComponentConfByType } from '@/components/QuestionComponents';
+// import classNames from 'classnames';
 
 import styles from '@/assets/styles/pages/question/EditCanvas.module.scss';
 
-import QuestionInput from '@/components/QuestionComponents/QuestionInput';
-import QuestionTitle from '@/components/QuestionComponents/QuestionTitle';
-
 const EditCanvas: FC = () => {
+  const { componentList /*selectedId*/ } = useGetComponentInfo();
   return (
     <div className={styles.canvas}>
-      <div className={styles['component-wrapper']}>
-        <div className={styles.component}>
-          <QuestionTitle />
-        </div>
-      </div>
-      <div className={styles['component-wrapper']}>
-        <div className={styles.component}>
-          <QuestionInput />
-        </div>
-      </div>
+      {componentList.map(component => {
+        return (
+          <div className={styles['component-wrapper']} key={component.fe_id}>
+            {/* <div className={styles.component}>{getComponentConfByType(component)}</div> */}
+          </div>
+        );
+      })}
     </div>
   );
 };
