@@ -7,7 +7,7 @@ export const componentList = [
     type: QuestionComponentsType.QuestionTitle,
     title: '标题',
     props: {
-      text: '',
+      text: '问卷1',
       level: 1,
       isCenter: false,
     },
@@ -26,8 +26,8 @@ export const componentList = [
     type: QuestionComponentsType.QuestionInput,
     title: '输入框',
     props: {
-      title: '你的姓名1',
-      placeholder: '请输入姓名1',
+      title: '爱好',
+      placeholder: '请输入爱好',
     },
   },
 ];

@@ -2,16 +2,29 @@ import React, { FC } from 'react';
 import { Typography } from 'antd';
 import { componentConfGroup, QComponentConfType } from '@/components/QuestionComponents';
 import styles from '@/assets/styles/pages/question/ComponentLib.module.scss';
+import { useDispatch } from 'react-redux';
+import { addComponent } from '@/store/questionDetail/componentState';
+import { nanoid } from 'nanoid';
 
 const { Title } = Typography;
 
 const Lib: FC = () => {
+  const dispatch = useDispatch();
   function getComponent(c: QComponentConfType) {
-    const { Component } = c;
+    const { Component, name, type, defaultProps } = c;
+    const handleClick = () => {
+      const componentInfo = {
+        fe_id: nanoid(),
+        title: name,
+        type,
+        props: defaultProps,
+      };
+      dispatch(addComponent(componentInfo));
+    };
     return (
-      <div className={styles.wrapper}>
+      <div key={type} className={styles.wrapper} onClick={handleClick}>
         <div className={styles.component}>
-          <Component></Component>
+          <Component />
         </div>
       </div>
     );

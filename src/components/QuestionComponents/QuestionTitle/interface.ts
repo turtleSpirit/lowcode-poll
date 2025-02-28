@@ -4,6 +4,11 @@ export interface QuestionTitleProps {
   isCenter?: boolean;
 }
 
+export type TitlePropsType = {
+  name: string;
+  prop: QuestionTitleProps;
+};
+
 export const QuestionTitleDefaultProps: QuestionTitleProps = {
   text: '一行标题',
   level: 1,

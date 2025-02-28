@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { QComponentPropsType } from '@/components/QuestionComponents/index';
 
+import { insertNewComponent } from '../utils';
+
 export type ComponentInfoType = {
   fe_id: string;
   type: string;
@@ -27,8 +29,16 @@ const componentStateSlice = createSlice({
     resetComponents: (state: ComponentsStateType, action: PayloadAction<ComponentsStateType>) => {
       return action.payload;
     },
+    /*选中组件*/
+    changeSelected: (state: ComponentsStateType, action: PayloadAction<string>) => {
+      state.selectedId = action.payload;
+    },
+    /*添加组件到画布*/
+    addComponent: (state: ComponentsStateType, action: PayloadAction<ComponentInfoType>) => {
+      insertNewComponent(state, action.payload);
+    },
   },
 });
 
-export const { resetComponents } = componentStateSlice.actions;
+export const { resetComponents, changeSelected, addComponent } = componentStateSlice.actions;
 export default componentStateSlice.reducer;
