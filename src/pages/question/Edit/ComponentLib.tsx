@@ -41,7 +41,7 @@ const Lib: FC = () => {
             </Title>
             <div>
               {components.map(component => {
-                return getComponent(component);
+                return getComponent(component as QComponentConfType);
               })}
             </div>
           </div>

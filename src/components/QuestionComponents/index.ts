@@ -13,7 +13,7 @@ import QuestionTitleConf, {
 } from './QuestionTitle';
 
 // 统一，各个组件的prop type
-export type QComponentPropsType = QuestionInputProps & QuestionTitleProps;
+export type QComponentPropsType = QuestionInputProps | QuestionTitleProps;
 
 // 统一，各个组件的prop type
 export type ComponentPropType = InputPropsType & TitlePropsType;
@@ -30,7 +30,7 @@ export type QComponentConfType = {
 };
 
 // 全部的组件配置列表
-const qComponentConfObj: { [key: string]: QComponentConfType } = {
+const qComponentConfObj = {
   [QuestionComponentsType.QuestionInput]: QuestionInputConf,
   [QuestionComponentsType.QuestionTitle]: QuestionTitleConf,
 };
