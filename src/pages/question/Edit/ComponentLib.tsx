@@ -15,8 +15,9 @@ const Lib: FC = () => {
     const handleClick = () => {
       const componentInfo = {
         fe_id: nanoid(),
-        title: name,
+        name,
         type,
+        isHidden: false,
         props: defaultProps,
       };
       dispatch(addComponent(componentInfo));
@@ -24,7 +25,7 @@ const Lib: FC = () => {
     return (
       <div key={type} className={styles.wrapper} onClick={handleClick}>
         <div className={styles.component}>
-          <Component />
+          <Component {...defaultProps} />
         </div>
       </div>
     );

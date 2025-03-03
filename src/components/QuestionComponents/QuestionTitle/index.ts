@@ -12,7 +12,7 @@ export * from './interface';
 export default {
   name: '标题',
   type: QuestionComponentsType.QuestionTitle,
+  defaultProps: QuestionTitleDefaultProps,
   PropComponent,
   Component,
-  defaultProps: QuestionTitleDefaultProps,
 };

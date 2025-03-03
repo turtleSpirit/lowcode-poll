@@ -8,12 +8,12 @@ import type { QuestionInputProps } from './interface';
 const { Paragraph } = Typography;
 
 const QuestionInput: FC<QuestionInputProps> = props => {
-  const { title, placeholder } = { ...QuestionInputDefaultProps, ...props };
+  const { title, placeholder, value } = { ...QuestionInputDefaultProps, ...props };
   return (
     <div>
       <Paragraph strong>{title}</Paragraph>
       <div>
-        <Input placeholder={placeholder}></Input>
+        <Input placeholder={placeholder} value={value}></Input>
       </div>
     </div>
   );

@@ -1,13 +1,24 @@
 import { FC } from 'react';
+import { QuestionComponentsType } from '@/constant/question';
 
-import QuestionInputConf, { QuestionInputProps, InputPropsType } from './QuestionInput';
-import QuestionTitleConf, { QuestionTitleProps, TitlePropsType } from './QuestionTitle';
+import QuestionInputConf, {
+  QuestionInputProps,
+  InputPropsType,
+  FromValueInput,
+} from './QuestionInput';
+import QuestionTitleConf, {
+  QuestionTitleProps,
+  TitlePropsType,
+  FromValueTitle,
+} from './QuestionTitle';
 
 // 统一，各个组件的prop type
 export type QComponentPropsType = QuestionInputProps & QuestionTitleProps;
 
 // 统一，各个组件的prop type
 export type ComponentPropType = InputPropsType & TitlePropsType;
+
+export type ChangeFromValue = FromValueInput | FromValueTitle;
 
 // 统一 组件的配置
 export type QComponentConfType = {
@@ -20,8 +31,8 @@ export type QComponentConfType = {
 
 // 全部的组件配置列表
 const qComponentConfObj: { [key: string]: QComponentConfType } = {
-  QuestionInput: QuestionInputConf,
-  QuestionTitle: QuestionTitleConf,
+  [QuestionComponentsType.QuestionInput]: QuestionInputConf,
+  [QuestionComponentsType.QuestionTitle]: QuestionTitleConf,
 };
 
 // 组件分组

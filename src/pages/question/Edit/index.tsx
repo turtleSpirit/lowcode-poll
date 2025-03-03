@@ -7,6 +7,8 @@ import { componentList } from '@/data/question';
 
 import EditCanvas from './EditCanvas';
 import LeftPanel from './LeftPanel';
+import RightPanel from './RightPanel';
+import EditHeader from './EditHeader';
 
 const QuestionEdit: FC = () => {
   const dispatch = useDispatch();
@@ -25,7 +27,9 @@ const QuestionEdit: FC = () => {
   }, []);
   return (
     <div className={styles.container}>
-      <div>Header</div>
+      <div>
+        <EditHeader />
+      </div>
       <div className={styles['content-wrapper']}>
         <div className={styles.content}>
           <div className={styles.left}>
@@ -36,7 +40,9 @@ const QuestionEdit: FC = () => {
               <EditCanvas />
             </div>
           </div>
-          <div className={styles.right}>right</div>
+          <div className={styles.right}>
+            <RightPanel />
+          </div>
         </div>
       </div>
     </div>
