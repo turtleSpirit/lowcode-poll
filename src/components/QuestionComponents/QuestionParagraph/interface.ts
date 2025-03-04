@@ -24,6 +24,6 @@ export type FromValueParaGraph = {
 };
 
 export const QuestionParaGraphDefaultProps: QuestionParaGraphProps = {
-  text: '输入框标题',
+  text: '段落内容',
   isCenter: false,
 };
