@@ -1,6 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { resetComponents, ComponentInfoType } from '@/store/questionDetail/componentState';
+import {
+  resetComponents,
+  ComponentInfoType,
+  changeSelected,
+} from '@/store/questionDetail/componentState';
 import styles from '@/assets/styles/pages/question/Edit.module.scss';
 
 import { componentList } from '@/data/question';
@@ -22,9 +26,14 @@ const QuestionEdit: FC = () => {
       resetComponents({
         selectedId,
         componentList: data,
+        copiedComponent: null,
       })
     ); // 重置 componentList
   }, []);
+  /*清空选中*/
+  function clearSelectedId() {
+    dispatch(changeSelected(''));
+  }
   return (
     <div className={styles.container}>
       <div>
@@ -35,7 +44,7 @@ const QuestionEdit: FC = () => {
           <div className={styles.left}>
             <LeftPanel />
           </div>
-          <div className={styles.main}>
+          <div className={styles.main} onClick={clearSelectedId}>
             <div className={styles['canvas-wrapper']}>
               <EditCanvas />
             </div>

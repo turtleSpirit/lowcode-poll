@@ -17,7 +17,8 @@ export function getCompomentById(fe_id: string, componentList: ComponentInfoType
 
 /*获取当前fe_id的下一个组件信息*/
 export function getNextSelected(componentList: ComponentInfoType[], fe_id: string) {
-  const index = componentList.findIndex(c => c.fe_id === fe_id);
+  const visibleComponentList = componentList.filter(c => !c.isHidden);
+  const index = visibleComponentList.findIndex(c => c.fe_id === fe_id);
   if (index < 0) {
     new Error('选中组件不存在');
     return { index: -1 };
@@ -26,7 +27,7 @@ export function getNextSelected(componentList: ComponentInfoType[], fe_id: strin
   // 重新计算 selectedId
   let newSelectedComponent: ComponentInfoType | undefined;
   let newSelectedId = '';
-  const length = componentList.length;
+  const length = visibleComponentList.length;
   if (length <= 1) {
     // 组件长度就一个，被删除了，就没有组件
     newSelectedId = '';
@@ -34,11 +35,11 @@ export function getNextSelected(componentList: ComponentInfoType[], fe_id: strin
     // 组件长度 > 1
     if (index + 1 === length) {
       // 要删除最后一个，就要选中上一个
-      newSelectedComponent = componentList[index - 1];
+      newSelectedComponent = visibleComponentList[index - 1];
       newSelectedId = newSelectedComponent.fe_id;
     } else {
       // 要删除的不是最后一个，删除以后，选中下一个
-      newSelectedComponent = componentList[index + 1];
+      newSelectedComponent = visibleComponentList[index + 1];
       newSelectedId = newSelectedComponent.fe_id;
     }
   }

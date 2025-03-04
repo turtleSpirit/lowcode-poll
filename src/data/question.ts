@@ -7,6 +7,7 @@ export const componentList = [
     type: QuestionComponentsType.QuestionTitle,
     name: '标题',
     isHidden: false, // 是否隐藏
+    isLocked: false, // 是否锁定
     props: {
       text: '问卷1',
       level: 1,
@@ -18,6 +19,7 @@ export const componentList = [
     type: QuestionComponentsType.QuestionInput,
     isHidden: false, // 是否隐藏
     name: '输入框',
+    isLocked: false, // 是否锁定
     props: {
       title: '你的姓名',
       placeholder: '请输入姓名',
@@ -29,6 +31,7 @@ export const componentList = [
     type: QuestionComponentsType.QuestionInput,
     isHidden: false, // 是否隐藏
     name: '输入框',
+    isLocked: false, // 是否锁定
     props: {
       title: '爱好',
       placeholder: '请输入爱好',

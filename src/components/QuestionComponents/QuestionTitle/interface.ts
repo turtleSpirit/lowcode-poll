@@ -8,6 +8,7 @@ export type TitlePropsType = {
   name: string;
   prop: QuestionTitleProps;
   onChange?: (params: FromValueTitle) => void;
+  disabled?: boolean;
 };
 
 // export type FromValueTitle = {

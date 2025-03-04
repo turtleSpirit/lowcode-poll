@@ -8,6 +8,7 @@ export type InputPropsType = {
   name: string;
   prop: QuestionInputProps;
   onChange?: (params: FromValueInput) => void;
+  disabled?: boolean;
 };
 
 // export type FromValueInput = {

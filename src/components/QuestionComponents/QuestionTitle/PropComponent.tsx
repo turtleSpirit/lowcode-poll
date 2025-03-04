@@ -4,7 +4,7 @@ import { Form, Input, Select, Checkbox } from 'antd';
 import { ChangeFromValue } from '@/components/QuestionComponents';
 
 const PropComponent: FC<TitlePropsType> = (props: TitlePropsType) => {
-  const { name, prop, onChange } = props;
+  const { name, prop, onChange, disabled } = props;
   const { text, level, isCenter } = prop;
   const [form] = Form.useForm();
   useEffect(() => {
@@ -14,7 +14,6 @@ const PropComponent: FC<TitlePropsType> = (props: TitlePropsType) => {
   function handleChange() {
     if (onChange) {
       const fromData = form.getFieldsValue() as ChangeFromValue;
-      console.log('%c打印: fromData %o', 'color: red ;', fromData);
 
       onChange(fromData);
     }
@@ -25,6 +24,7 @@ const PropComponent: FC<TitlePropsType> = (props: TitlePropsType) => {
       form={form}
       initialValues={{ name, text, level, isCenter }}
       onValuesChange={handleChange}
+      disabled={disabled}
     >
       <Form.Item label="图层名" name="name">
         <Input />

@@ -3,7 +3,7 @@ import { InputPropsType } from './interface';
 import { Form, Input } from 'antd';
 
 const PropComponent: FC<InputPropsType> = (props: InputPropsType) => {
-  const { name, prop, onChange } = props;
+  const { name, prop, onChange, disabled } = props;
   const { title, placeholder, value } = prop;
   const [form] = Form.useForm();
   function handleChange() {
@@ -16,7 +16,7 @@ const PropComponent: FC<InputPropsType> = (props: InputPropsType) => {
     form.setFieldsValue({ name, title, placeholder, value });
   }, [name, title, placeholder]);
   return (
-    <Form layout="vertical" form={form} onValuesChange={handleChange}>
+    <Form layout="vertical" form={form} onValuesChange={handleChange} disabled={disabled}>
       <Form.Item label="图层名" name="name">
         <Input />
       </Form.Item>

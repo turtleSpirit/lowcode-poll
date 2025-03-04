@@ -4,6 +4,7 @@ import { getQComponentConfByType } from '@/components/QuestionComponents';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 import { changeSelected } from '@/store/questionDetail/componentState';
+import useBindCanvasKryPress from '@/hooks/useBindCanvasKryPress';
 
 import styles from '@/assets/styles/pages/question/EditCanvas.module.scss';
 
@@ -21,6 +22,8 @@ function getComponent(componentInfo: ComponentInfoType) {
 
 const EditCanvas: FC = () => {
   const dispatch = useDispatch();
+  useBindCanvasKryPress();
+
   const { componentList, selectedId } = useGetComponentInfo();
 
   function handleClick(e: MouseEvent, fe_id: string) {
@@ -30,19 +33,23 @@ const EditCanvas: FC = () => {
 
   return (
     <div className={styles.canvas}>
-      {componentList.map(c => {
-        const { fe_id } = c;
-        const wrapperDefaultClassName = styles['component-wrapper'];
-        const wrapperClassName = classNames({
-          [wrapperDefaultClassName]: true,
-          [styles['component-active']]: fe_id === selectedId,
-        });
-        return (
-          <div className={wrapperClassName} key={fe_id} onClick={e => handleClick(e, fe_id)}>
-            <div className={styles.component}>{getComponent(c)}</div>
-          </div>
-        );
-      })}
+      {componentList
+        .filter(c => !c.isHidden)
+        .map(c => {
+          const { fe_id, isLocked } = c;
+          const wrapperDefaultClassName = styles['component-wrapper'];
+          const wrapperLockedClassName = styles.locked;
+          const wrapperClassName = classNames({
+            [wrapperDefaultClassName]: true,
+            [styles['component-active']]: fe_id === selectedId,
+            [wrapperLockedClassName]: isLocked,
+          });
+          return (
+            <div className={wrapperClassName} key={fe_id} onClick={e => handleClick(e, fe_id)}>
+              <div className={styles.component}>{getComponent(c)}</div>
+            </div>
+          );
+        })}
     </div>
   );
 };

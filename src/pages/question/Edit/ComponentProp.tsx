@@ -13,7 +13,7 @@ const ComponentProp: FC = () => {
 
   const { selectedComponent } = useGetComponentInfo();
   if (!selectedComponent) return <NoProp />;
-  const { type, props, name, fe_id } = selectedComponent;
+  const { type, props, name, fe_id, isLocked, isHidden } = selectedComponent;
   const componentConf = getQComponentConfByType(type);
   if (componentConf == null) return <NoProp />;
 
@@ -29,7 +29,13 @@ const ComponentProp: FC = () => {
   }
 
   const { PropComponent } = componentConf;
-  return <PropComponent {...{ name: name, prop: props }} onChange={handleChange} />;
+  return (
+    <PropComponent
+      {...{ name: name, prop: props }}
+      onChange={handleChange}
+      disabled={isLocked || isHidden}
+    />
+  );
 };
 
 export default ComponentProp;

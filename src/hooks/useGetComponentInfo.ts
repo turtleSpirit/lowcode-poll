@@ -5,7 +5,7 @@ import type { StateType } from '@/store';
 // 获取文件编辑页信息
 function useGetComponentInfo() {
   const componentsState = useSelector((state: StateType) => state.componentState);
-  const { componentList = [], selectedId } = componentsState;
+  const { componentList = [], selectedId, copiedComponent } = componentsState;
 
   const selectedComponent = componentList.find(component => component.fe_id === selectedId);
 
@@ -13,6 +13,7 @@ function useGetComponentInfo() {
     componentList,
     selectedId,
     selectedComponent,
+    copiedComponent,
   };
 }
 
