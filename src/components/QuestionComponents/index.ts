@@ -11,14 +11,27 @@ import QuestionTitleConf, {
   TitlePropsType,
   FromValueTitle,
 } from './QuestionTitle';
+import QuestionParagraphConf, {
+  QuestionParaGraphProps,
+  ParaGraphPropsType,
+  FromValueParaGraph,
+} from './QuestionParagraph';
+import QuestionInfoConf, { QuestionInfoProps, InfoPropsType, FromValueInfo } from './QuestionInfo';
 
 // 统一，各个组件的prop type
-export type QComponentPropsType = QuestionInputProps | QuestionTitleProps;
+export type QComponentPropsType =
+  | QuestionInputProps
+  | QuestionTitleProps
+  | QuestionParaGraphProps
+  | QuestionInfoProps;
 
 // 统一，各个组件的prop type
-export type ComponentPropType = InputPropsType & TitlePropsType;
+export type ComponentPropType = InputPropsType &
+  TitlePropsType &
+  ParaGraphPropsType &
+  InfoPropsType;
 
-export type ChangeFromValue = FromValueInput | FromValueTitle;
+export type ChangeFromValue = FromValueInput | FromValueTitle | FromValueParaGraph | FromValueInfo;
 
 // 统一 组件的配置
 export type QComponentConfType = {
@@ -33,6 +46,8 @@ export type QComponentConfType = {
 const qComponentConfObj = {
   [QuestionComponentsType.QuestionInput]: QuestionInputConf,
   [QuestionComponentsType.QuestionTitle]: QuestionTitleConf,
+  [QuestionComponentsType.QuestionParagraph]: QuestionParagraphConf,
+  [QuestionComponentsType.QuestionInfo]: QuestionInfoConf,
 };
 
 // 组件分组
@@ -41,7 +56,7 @@ export const componentConfGroup = [
   {
     groupName: '文本显示',
     groupType: 'group-text',
-    components: [QuestionTitleConf],
+    components: [QuestionTitleConf, QuestionParagraphConf, QuestionInfoConf],
   },
   {
     groupName: '文本输入',
