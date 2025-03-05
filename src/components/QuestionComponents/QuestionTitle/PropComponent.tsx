@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { TitlePropsType } from './interface';
 import { Form, Input, Select, Checkbox } from 'antd';
-import { ChangeFromValue } from '@/components/QuestionComponents';
 
 const PropComponent: FC<TitlePropsType> = (props: TitlePropsType) => {
   const { name, prop, onChange, disabled } = props;
@@ -13,8 +12,7 @@ const PropComponent: FC<TitlePropsType> = (props: TitlePropsType) => {
 
   function handleChange() {
     if (onChange) {
-      const fromData = form.getFieldsValue() as ChangeFromValue;
-
+      const fromData = form.getFieldsValue();
       onChange(fromData);
     }
   }

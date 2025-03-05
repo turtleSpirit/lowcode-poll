@@ -17,21 +17,41 @@ import QuestionParagraphConf, {
   FromValueParaGraph,
 } from './QuestionParagraph';
 import QuestionInfoConf, { QuestionInfoProps, InfoPropsType, FromValueInfo } from './QuestionInfo';
+import QuestionTextareaConf, {
+  QuestionTextareaProps,
+  TextareaPropsType,
+  FromValueTextarea,
+} from './QuestionTextarea';
+import QuestionRadioConf, {
+  QuestionRadioProps,
+  RadioPropsType,
+  FromValueRadio,
+} from './QuestionRadio';
 
 // 统一，各个组件的prop type
 export type QComponentPropsType =
   | QuestionInputProps
   | QuestionTitleProps
   | QuestionParaGraphProps
-  | QuestionInfoProps;
+  | QuestionInfoProps
+  | QuestionTextareaProps
+  | QuestionRadioProps;
 
 // 统一，各个组件的prop type
 export type ComponentPropType = InputPropsType &
   TitlePropsType &
   ParaGraphPropsType &
-  InfoPropsType;
+  InfoPropsType &
+  TextareaPropsType &
+  RadioPropsType;
 
-export type ChangeFromValue = FromValueInput | FromValueTitle | FromValueParaGraph | FromValueInfo;
+export type ChangeFromValue =
+  | FromValueInput
+  | FromValueTitle
+  | FromValueParaGraph
+  | FromValueInfo
+  | FromValueTextarea
+  | FromValueRadio;
 
 // 统一 组件的配置
 export type QComponentConfType = {
@@ -48,6 +68,8 @@ const qComponentConfObj = {
   [QuestionComponentsType.QuestionTitle]: QuestionTitleConf,
   [QuestionComponentsType.QuestionParagraph]: QuestionParagraphConf,
   [QuestionComponentsType.QuestionInfo]: QuestionInfoConf,
+  [QuestionComponentsType.QuestionTextarea]: QuestionTextareaConf,
+  [QuestionComponentsType.QuestionRadio]: QuestionRadioConf,
 };
 
 // 组件分组
@@ -61,7 +83,12 @@ export const componentConfGroup = [
   {
     groupName: '文本输入',
     groupType: 'group-input',
-    components: [QuestionInputConf],
+    components: [QuestionInputConf, QuestionTextareaConf],
+  },
+  {
+    groupName: '用户选择',
+    groupType: 'group-choice',
+    components: [QuestionRadioConf],
   },
 ];
 

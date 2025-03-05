@@ -3,4 +3,6 @@ export const QuestionComponentsType = {
   QuestionTitle: 'QuestionTitle',
   QuestionParagraph: 'QuestionParagraph',
   QuestionInfo: 'QuestionInfo',
+  QuestionTextarea: 'QuestionTextarea',
+  QuestionRadio: 'QuestionRadio',
 };
