@@ -28,6 +28,11 @@ import QuestionRadioConf, {
   FromValueRadio,
 } from './QuestionRadio';
 
+import QuestionCheckboxConf, {
+  QuestionCheckboxProps,
+  CheckboxPropsType,
+  FromValueCheckbox,
+} from './QuestionCheckbox';
 // 统一，各个组件的prop type
 export type QComponentPropsType =
   | QuestionInputProps
@@ -35,7 +40,8 @@ export type QComponentPropsType =
   | QuestionParaGraphProps
   | QuestionInfoProps
   | QuestionTextareaProps
-  | QuestionRadioProps;
+  | QuestionRadioProps
+  | QuestionCheckboxProps;
 
 // 统一，各个组件的prop type
 export type ComponentPropType = InputPropsType &
@@ -43,7 +49,8 @@ export type ComponentPropType = InputPropsType &
   ParaGraphPropsType &
   InfoPropsType &
   TextareaPropsType &
-  RadioPropsType;
+  RadioPropsType &
+  CheckboxPropsType;
 
 export type ChangeFromValue =
   | FromValueInput
@@ -51,7 +58,8 @@ export type ChangeFromValue =
   | FromValueParaGraph
   | FromValueInfo
   | FromValueTextarea
-  | FromValueRadio;
+  | FromValueRadio
+  | FromValueCheckbox;
 
 // 统一 组件的配置
 export type QComponentConfType = {
@@ -70,6 +78,7 @@ const qComponentConfObj = {
   [QuestionComponentsType.QuestionInfo]: QuestionInfoConf,
   [QuestionComponentsType.QuestionTextarea]: QuestionTextareaConf,
   [QuestionComponentsType.QuestionRadio]: QuestionRadioConf,
+  [QuestionComponentsType.QuestionCheckbox]: QuestionCheckboxConf,
 };
 
 // 组件分组
@@ -88,7 +97,7 @@ export const componentConfGroup = [
   {
     groupName: '用户选择',
     groupType: 'group-choice',
-    components: [QuestionRadioConf],
+    components: [QuestionRadioConf, QuestionCheckboxConf],
   },
 ];
 
