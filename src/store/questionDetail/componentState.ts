@@ -80,10 +80,10 @@ const componentStateSlice = createSlice({
       if (curComp) {
         let selectedId = '';
         if (isHidden) {
-          selectedId = fe_id;
-        } else {
           const { newSelectedId } = getNextSelected(componentList, fe_id);
           selectedId = newSelectedId || '';
+        } else {
+          selectedId = fe_id;
         }
         curComp.isHidden = isHidden;
         state.selectedId = selectedId;
@@ -137,6 +137,15 @@ const componentStateSlice = createSlice({
 
       state.selectedId = componentList[selectedIndex + 1].fe_id;
     },
+    // 修改组件的那么
+    changeComponentName: (
+      state: ComponentsStateType,
+      action: PayloadAction<{ fe_id: string; name: string }>
+    ) => {
+      const { name, fe_id } = action.payload;
+      const curComp = state.componentList.find(c => c.fe_id === fe_id);
+      if (curComp) curComp.name = name;
+    },
   },
 });
 
@@ -152,5 +161,6 @@ export const {
   pasteComponent,
   selectPrevComponent,
   selectNextComponent,
+  changeComponentName,
 } = componentStateSlice.actions;
 export default componentStateSlice.reducer;
