@@ -11,17 +11,10 @@ export type TextareaPropsType = {
   disabled?: boolean;
 };
 
-// export type FromValueInput = {
-//   name: string;
-// }&{
-//   [K in keyof QuestionInputProps]?: QuestionInputProps[K];
-// };
-
 export type FromValueTextarea = {
   name: string;
-  title?: string;
-  placeholder?: string;
-  value?: string;
+} & {
+  [K in keyof QuestionTextareaProps]?: QuestionTextareaProps[K];
 };
 
 export const QuestionInputDefaultProps: QuestionTextareaProps = {

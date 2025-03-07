@@ -10,16 +10,10 @@ export type InfoPropsType = {
   disabled?: boolean;
 };
 
-// export type FromValueInput = {
-//   name: string;
-// }&{
-//   [K in keyof QuestionInputProps]?: QuestionInputProps[K];
-// };
-
 export type FromValueInfo = {
   name: string;
-  title?: string;
-  desc?: string;
+} & {
+  [K in keyof QuestionInfoProps]?: QuestionInfoProps[K];
 };
 
 export const QuestionInfoDefaultProps: QuestionInfoProps = {

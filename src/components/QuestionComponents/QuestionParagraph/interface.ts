@@ -10,17 +10,10 @@ export type ParaGraphPropsType = {
   disabled?: boolean;
 };
 
-// export type FromValueInput = {
-//   name: string;
-// }&{
-//   [K in keyof QuestionInputProps]?: QuestionInputProps[K];
-// };
-
 export type FromValueParaGraph = {
   name: string;
-  title?: string;
-  placeholder?: string;
-  value?: string;
+} & {
+  [K in keyof QuestionParaGraphProps]?: QuestionParaGraphProps[K];
 };
 
 export const QuestionParaGraphDefaultProps: QuestionParaGraphProps = {

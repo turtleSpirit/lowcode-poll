@@ -16,18 +16,10 @@ export type CheckboxPropsType = {
   disabled?: boolean;
 };
 
-// export type FromValueTitle = {
-//   name: string;
-// }&{
-//   [K in keyof QuestionTitleProps]?: QuestionTitleProps[K];
-// };
-
 export type FromValueCheckbox = {
   name: string;
-  title?: string;
-  isVertical?: boolean;
-  list?: OptionType[];
-  value?: string;
+} & {
+  [K in keyof QuestionCheckboxProps]?: QuestionCheckboxProps[K];
 };
 
 export const QuestionCheckboxDefaultProps: QuestionCheckboxProps = {

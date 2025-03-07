@@ -16,18 +16,10 @@ export type RadioPropsType = {
   disabled?: boolean;
 };
 
-// export type FromValueTitle = {
-//   name: string;
-// }&{
-//   [K in keyof QuestionTitleProps]?: QuestionTitleProps[K];
-// };
-
 export type FromValueRadio = {
   name: string;
-  title?: string;
-  isVertical?: boolean;
-  options?: OptionType[];
-  value?: string;
+} & {
+  [K in keyof QuestionRadioProps]?: QuestionRadioProps[K];
 };
 
 export const QuestionRadioDefaultProps: QuestionRadioProps = {

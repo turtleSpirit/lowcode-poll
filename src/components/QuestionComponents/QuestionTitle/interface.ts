@@ -11,17 +11,10 @@ export type TitlePropsType = {
   disabled?: boolean;
 };
 
-// export type FromValueTitle = {
-//   name: string;
-// }&{
-//   [K in keyof QuestionTitleProps]?: QuestionTitleProps[K];
-// };
-
 export type FromValueTitle = {
   name: string;
-  text?: string;
-  level?: 1 | 2 | 3 | 4 | 5;
-  isCenter?: boolean;
+} & {
+  [K in keyof QuestionTitleProps]?: QuestionTitleProps[K];
 };
 
 export const QuestionTitleDefaultProps: QuestionTitleProps = {
