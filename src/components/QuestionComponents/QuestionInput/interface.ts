@@ -11,18 +11,18 @@ export type InputPropsType = {
   disabled?: boolean;
 };
 
-// export type FromValueInput = {
-//   name: string;
-// }&{
-//   [K in keyof QuestionInputProps]?: QuestionInputProps[K];
-// };
-
 export type FromValueInput = {
   name: string;
-  title?: string;
-  placeholder?: string;
-  value?: string;
+} & {
+  [K in keyof QuestionInputProps]?: QuestionInputProps[K];
 };
+
+// export type FromValueInput = {
+//   name: string;
+//   title?: string;
+//   placeholder?: string;
+//   value?: string;
+// };
 
 export const QuestionInputDefaultProps: QuestionInputProps = {
   title: '输入框标题',
