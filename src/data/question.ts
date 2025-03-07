@@ -39,3 +39,11 @@ export const componentList = [
     },
   },
 ];
+
+export const pageInfo = {
+  title: '问卷1',
+  desc: '这是一个示例问卷',
+  css: '',
+  js: '',
+  componentList,
+};

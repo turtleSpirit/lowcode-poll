@@ -1,13 +1,10 @@
 import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  resetComponents,
-  ComponentInfoType,
-  changeSelected,
-} from '@/store/questionDetail/componentState';
+import { resetComponents, changeSelected } from '@/store/questionDetail/componentState';
+import { resetPageInfo } from '@/store/pageInfoReducer';
 import styles from '@/assets/styles/pages/question/Edit.module.scss';
 
-import { componentList } from '@/data/question';
+import { pageInfo } from '@/data/question';
 
 import EditCanvas from './EditCanvas';
 import LeftPanel from './LeftPanel';
@@ -16,7 +13,7 @@ import EditHeader from './EditHeader';
 
 const QuestionEdit: FC = () => {
   const dispatch = useDispatch();
-  const data = componentList as ComponentInfoType[];
+  const { componentList, title, desc, js, css } = pageInfo; // 获取到 questionDetail 里面的 componentList 状态
   useEffect(() => {
     let selectedId = '';
     if (componentList.length > 0) {
@@ -25,10 +22,18 @@ const QuestionEdit: FC = () => {
     dispatch(
       resetComponents({
         selectedId,
-        componentList: data,
+        componentList: componentList,
         copiedComponent: null,
       })
     ); // 重置 componentList
+    dispatch(
+      resetPageInfo({
+        title,
+        desc,
+        js,
+        css,
+      })
+    ); // 重置 pageInfo
   }, []);
   /*清空选中*/
   function clearSelectedId() {

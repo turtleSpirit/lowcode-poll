@@ -1,13 +1,56 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC, useState, useRef, useEffect } from 'react';
 import styles from '@/assets/styles/pages/question/EditHeader.module.scss';
-import { Button, Typography, Space } from 'antd';
-import { LeftOutlined } from '@ant-design/icons';
+import { Button, Typography, Space, Input } from 'antd';
+import { LeftOutlined, EditOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import useGetPageInfo from '@/hooks/useGetPageInfo';
+import { useDispatch } from 'react-redux';
+import { changePageTitle } from '@/store/pageInfoReducer';
 
 import EditToolbar from './EditToolBar';
 
+import type { InputRef } from 'antd';
+
 const { Title } = Typography;
 
+// 显示和修改标题
+const TitleElem: FC = () => {
+  const dispatch = useDispatch();
+  const inputRef = useRef<InputRef>(null);
+  const { title } = useGetPageInfo();
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const newTitle = e.target.value;
+    dispatch(changePageTitle(newTitle));
+  }
+  function goEditTitle() {
+    setIsEdit(true);
+  }
+  useEffect(() => {
+    if (isEdit) {
+      inputRef.current?.focus(); // 使input获取焦点
+    }
+  }, [isEdit]);
+  if (isEdit) {
+    return (
+      <Input
+        ref={inputRef}
+        value={title}
+        onChange={handleChange}
+        onPressEnter={() => setIsEdit(false)}
+        onBlur={() => setIsEdit(false)}
+      />
+    );
+  }
+  return (
+    <Space>
+      <Title>{title}</Title>
+      <Button type="text" icon={<EditOutlined />} onClick={goEditTitle}></Button>
+    </Space>
+  );
+};
+
+// 编辑器头部
 const EditHeader: FC = () => {
   const nav = useNavigate();
 
@@ -19,7 +62,7 @@ const EditHeader: FC = () => {
             <Button type="link" icon={<LeftOutlined />} onClick={() => nav(-1)}>
               返回
             </Button>
-            <Title>问卷标题</Title>
+            <TitleElem />
           </Space>
         </div>
         <div className={styles.main}>
