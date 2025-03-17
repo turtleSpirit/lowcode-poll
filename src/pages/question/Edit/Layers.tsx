@@ -7,11 +7,14 @@ import {
   toggleComponentLocked,
   changeComponentHidden,
   changeComponentName,
+  moveComponent,
 } from '@/store/questionDetail/componentState';
 import { message, Button, Space, Input } from 'antd';
 import { EyeInvisibleOutlined, LockOutlined } from '@ant-design/icons';
 
 import styles from '@/assets/styles/pages/question/Layers.module.scss';
+import SortableContainer from '@/components/DragSortable/SortableContainer';
+import SortableItem from '@/components/DragSortable/SortableItem';
 
 const Layers: FC = () => {
   const dispatch = useDispatch();
@@ -42,8 +45,18 @@ const Layers: FC = () => {
     if (!value || !selectedId) return;
     dispatch(changeComponentName({ fe_id: selectedId, name: value }));
   }
+  const componentListWithId = componentList.map(c => {
+    return {
+      ...c,
+      id: c.fe_id,
+    };
+  });
+
+  function handleDragEnd(oldIndex: number, newIndex: number) {
+    dispatch(moveComponent({ oldIndex, newIndex }));
+  }
   return (
-    <>
+    <SortableContainer items={componentListWithId} onDragEnd={handleDragEnd}>
       {componentList.map(c => {
         const { fe_id, name, isLocked, isHidden } = c;
         const titleDefaultClassName = styles.title;
@@ -53,42 +66,44 @@ const Layers: FC = () => {
           [selectedClassName]: fe_id === selectedId,
         });
         return (
-          <div key={fe_id} className={styles.wrapper}>
-            <div className={titleClassName} onClick={() => handleTitleClick(fe_id)}>
-              {fe_id === changeTitleId && (
-                <Input
-                  value={name}
-                  onPressEnter={() => setChangeTitleId('')}
-                  onBlur={() => setChangeTitleId('')}
-                  onChange={changeTitle}
-                />
-              )}
-              {fe_id !== changeTitleId && name}
+          <SortableItem key={fe_id} id={fe_id}>
+            <div key={fe_id} className={styles.wrapper}>
+              <div className={titleClassName} onClick={() => handleTitleClick(fe_id)}>
+                {fe_id === changeTitleId && (
+                  <Input
+                    value={name}
+                    onPressEnter={() => setChangeTitleId('')}
+                    onBlur={() => setChangeTitleId('')}
+                    onChange={changeTitle}
+                  />
+                )}
+                {fe_id !== changeTitleId && name}
+              </div>
+              <div className={styles.handler}>
+                <Space>
+                  <Button
+                    size="small"
+                    shape="circle"
+                    icon={<EyeInvisibleOutlined />}
+                    type={isHidden ? 'primary' : 'text'}
+                    className={!isHidden ? styles.btn : ''}
+                    onClick={() => changeHidden(fe_id, isHidden as boolean)}
+                  ></Button>
+                  <Button
+                    size="small"
+                    shape="circle"
+                    icon={<LockOutlined />}
+                    type={isLocked ? 'primary' : 'text'}
+                    className={!isLocked ? styles.btn : ''}
+                    onClick={() => changeLocked(fe_id)}
+                  ></Button>
+                </Space>
+              </div>
             </div>
-            <div className={styles.handler}>
-              <Space>
-                <Button
-                  size="small"
-                  shape="circle"
-                  icon={<EyeInvisibleOutlined />}
-                  type={isHidden ? 'primary' : 'text'}
-                  className={!isHidden ? styles.btn : ''}
-                  onClick={() => changeHidden(fe_id, isHidden as boolean)}
-                ></Button>
-                <Button
-                  size="small"
-                  shape="circle"
-                  icon={<LockOutlined />}
-                  type={isLocked ? 'primary' : 'text'}
-                  className={!isLocked ? styles.btn : ''}
-                  onClick={() => changeLocked(fe_id)}
-                ></Button>
-              </Space>
-            </div>
-          </div>
+          </SortableItem>
         );
       })}
-    </>
+    </SortableContainer>
   );
 };
 export default Layers;

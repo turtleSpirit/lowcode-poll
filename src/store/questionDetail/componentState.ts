@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { QComponentPropsType } from '@/components/QuestionComponents/index';
-
-import { insertNewComponent, getNextSelected, getCompomentById } from '../utils';
 import clonedeep from 'lodash.clonedeep';
 import { nanoid } from 'nanoid';
+import { arrayMove } from '@dnd-kit/sortable';
+
+import { QComponentPropsType } from '@/components/QuestionComponents/index';
+import { insertNewComponent, getNextSelected, getCompomentById } from '../utils';
 
 export type ComponentInfoType = {
   fe_id: string;
@@ -146,6 +147,14 @@ const componentStateSlice = createSlice({
       const curComp = state.componentList.find(c => c.fe_id === fe_id);
       if (curComp) curComp.name = name;
     },
+    moveComponent: (
+      state: ComponentsStateType,
+      action: PayloadAction<{ oldIndex: number; newIndex: number }>
+    ) => {
+      const { oldIndex, newIndex } = action.payload;
+      const { componentList } = state;
+      state.componentList = arrayMove(componentList, oldIndex, newIndex);
+    },
   },
 });
 
@@ -162,5 +171,6 @@ export const {
   selectPrevComponent,
   selectNextComponent,
   changeComponentName,
+  moveComponent,
 } = componentStateSlice.actions;
 export default componentStateSlice.reducer;

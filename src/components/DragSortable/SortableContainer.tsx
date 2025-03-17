@@ -9,12 +9,7 @@ import {
   useSensors,
   DragEndEvent,
 } from '@dnd-kit/core';
-import {
-  arrayMove,
-  SortableContext,
-  verticalListSortingStrategy,
-  sortableKeyboardCoordinates,
-} from '@dnd-kit/sortable';
+import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable';
 
 type PropsType = {
   children: JSX.Element | JSX.Element[];
@@ -34,15 +29,22 @@ const SortableContainer: FC<PropsType> = (props: PropsType) => {
   );
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
+
     if (over == null) return;
 
-    if (active.id == over.id) {
+    if (active.id !== over.id) {
       const oldIndex = items.findIndex(c => c.fe_id === active.id);
       const newIndex = items.findIndex(c => c.fe_id === over.id);
       onDragEnd(oldIndex, newIndex);
     }
   }
-  return <p>123 {children}</p>;
+  return (
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <SortableContext items={items} strategy={verticalListSortingStrategy}>
+        {children}
+      </SortableContext>
+    </DndContext>
+  );
 };
 
 export default SortableContainer;
