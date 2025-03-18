@@ -1,5 +1,7 @@
 import { useKeyPress } from 'ahooks';
 import { useDispatch } from 'react-redux';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
+
 import {
   removeSelectedComponent,
   copySelectedComponent,
@@ -13,7 +15,13 @@ import {
  */
 function isActiveElementValid() {
   const activeEle = document.activeElement;
+
+  // 没有增加dnd-kit之前
+  // if (activeEle === document.body) return true;
+
+  // 增加dnd-kit之后
   if (activeEle === document.body) return true;
+  if (activeEle?.matches('div[role="button"]')) return true;
   return false;
 }
 
@@ -22,7 +30,7 @@ function callback(fn: () => void) {
   fn();
 }
 
-function useBindCanvasKryPress() {
+function useBindCanvasKeyPress() {
   const dispatch = useDispatch();
 
   // 删除组件
@@ -58,6 +66,25 @@ function useBindCanvasKryPress() {
       dispatch(selectNextComponent());
     });
   });
+
+  // 撤销
+  useKeyPress(
+    ['ctrl.z', 'meta.z'],
+    () => {
+      callback(() => {
+        dispatch(UndoActionCreators.undo());
+      });
+    },
+    {
+      exactMatch: true,
+    }
+  );
+  // 重做
+  useKeyPress(['ctrl.shift.z', 'meta.shift.z'], () => {
+    callback(() => {
+      dispatch(UndoActionCreators.redo());
+    });
+  });
 }
 
-export default useBindCanvasKryPress;
+export default useBindCanvasKeyPress;
