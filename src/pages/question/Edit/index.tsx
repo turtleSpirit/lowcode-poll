@@ -4,7 +4,7 @@ import { resetComponents, changeSelected } from '@/store/questionDetail/componen
 import { resetPageInfo } from '@/store/pageInfoReducer';
 import styles from '@/assets/styles/pages/question/Edit.module.scss';
 
-import { pageInfo } from '@/data/question';
+import { pageEditInfo as pageInfo } from '@/data/question';
 
 import EditCanvas from './EditCanvas';
 import LeftPanel from './LeftPanel';
