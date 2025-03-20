@@ -11,10 +11,12 @@ import { resetComponents } from '@/store/questionDetail/componentState';
 import StatHeader from './StatHeader';
 import ComponentList from './ComponentList';
 import PageStat from './PageStat';
+import ChartStat from './ChartStat';
 
 const QuestionStat: FC = () => {
   const nav = useNavigate();
   const dispatch = useDispatch();
+
   const { title, isPublished } = pageInfo;
   const { componentList } = pageInfo;
   const [loading, setLoading] = useState(false);
@@ -81,7 +83,12 @@ const QuestionStat: FC = () => {
             setSelectedComponentType={setSelectedComponentType}
           />
         </div>
-        <div className={styles.right}>right</div>
+        <div className={styles.right}>
+          <ChartStat
+            selectedComponentId={selectedComponentId}
+            selectedComponentType={selectedComponentType}
+          />
+        </div>
       </>
     );
   }

@@ -17,6 +17,7 @@ const PageStat: FC<PropsType> = (props: PropsType) => {
   const { componentList } = pageInfo;
 
   const stateList = getStatList();
+
   const [list, setList] = useState(stateList); // TODO: 获取数据
 
   const column = componentList.map(c => {

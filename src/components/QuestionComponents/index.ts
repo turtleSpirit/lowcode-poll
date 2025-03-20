@@ -26,12 +26,14 @@ import QuestionRadioConf, {
   QuestionRadioProps,
   RadioPropsType,
   FromValueRadio,
+  QuestionRadioStatPropsType,
 } from './QuestionRadio';
 
 import QuestionCheckboxConf, {
   QuestionCheckboxProps,
   CheckboxPropsType,
   FromValueCheckbox,
+  QuestionCheckboxStatPropsType,
 } from './QuestionCheckbox';
 // 统一，各个组件的prop type
 export type QComponentPropsType =
@@ -61,6 +63,8 @@ export type ChangeFromValue =
   | FromValueRadio
   | FromValueCheckbox;
 
+export type StateComponentPropType = QuestionRadioStatPropsType | QuestionCheckboxStatPropsType;
+
 // 统一 组件的配置
 export type QComponentConfType = {
   name: string;
@@ -68,6 +72,7 @@ export type QComponentConfType = {
   defaultProps: QComponentPropsType;
   Component: FC<QComponentPropsType>;
   PropComponent: FC<ComponentPropType>;
+  StatComponent?: FC<StateComponentPropType>;
 };
 
 // 全部的组件配置列表
@@ -102,5 +107,5 @@ export const componentConfGroup = [
 ];
 
 export function getQComponentConfByType(type: string) {
-  return qComponentConfObj[type];
+  return qComponentConfObj[type] as QComponentConfType;
 }
